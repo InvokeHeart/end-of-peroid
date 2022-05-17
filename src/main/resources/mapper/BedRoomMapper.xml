@@ -1,0 +1,70 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.stop.eop.mapper.BedRoomMapper">
+    <resultMap id="bedRoomMap" type="org.stop.eop.entity.po.BedRoom">
+        <id property="bedRoomId" column="bedroom"/>
+        <result property="build" column="build"/>
+        <result property="floor" column="floor"/>
+        <result property="room" column="room"/>
+    </resultMap>
+
+
+    <insert id="addBedRoom">
+        insert into building
+        values (#{bedRoomId}, #{build}, #{floor}, #{room})
+    </insert>
+    <update id="updateBedRoomById" parameterType="org.stop.eop.entity.po.BedRoom">
+        <if test="bedRoomId!=null and bedRoomId!=''">
+            update building
+            <trim prefix="set" suffixOverrides=",">
+                <if test="build !=0 and build!=null">
+                    build=#{build},
+                </if>
+                <if test="floor!=null and floor>0">
+                    floor=#{floor},
+                </if>
+                <if test="room!=null and room>0">
+                    room=#{room},
+                </if>
+
+            </trim>
+            <where>
+                bedroom = #{bedRoomId}
+            </where>
+        </if>
+    </update>
+    <delete id="deleteBedRoomById">
+        delete
+        from building
+        where bedroom = #{bedRoomId}
+    </delete>
+    <select id="getByBedRoomId" resultMap="bedRoomMap">
+        select *
+        from building
+        where bedroom = #{bedRoomId}
+    </select>
+    <select id="allRooms" resultMap="bedRoomMap">
+        select *
+        from building
+    </select>
+    <select id="getByRoomMulti" resultMap="bedRoomMap">
+        select * from building
+        <where>
+            <if test="bedRoomId!=null and bedRoomId!=''">
+                and bedroom = #{bedRoomId}
+            </if>
+            <if test="build!=null and build > 0">
+                and build=#{build}
+            </if>
+            <if test="floor!=null and floor>0">
+                and floor=#{floor}
+            </if>
+            <if test="room!=null and room>0">
+                and room=#{room}
+            </if>
+        </where>
+
+    </select>
+</mapper>

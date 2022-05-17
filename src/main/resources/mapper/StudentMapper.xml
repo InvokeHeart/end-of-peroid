@@ -1,0 +1,64 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.stop.eop.mapper.StudentMapper">
+    <resultMap id="stuMap" type="org.stop.eop.entity.po.Student">
+        <id property="studentId" column="stu_id"/>
+        <result property="studentName" column="name"/>
+        <result property="bedRoomId" column="bedroom"/>
+    </resultMap>
+
+
+    <insert id="addStudent">
+        insert into student
+        values (#{studentId}, #{studentName}, #{bedRoomId}) on DUPLICATE KEY
+        UPDATE bedRoom=#{bedRoomId}
+    </insert>
+
+    <insert id="addStudentBatch">
+        insert into student values
+        <foreach collection="students" separator="," item="stu">
+            (#{stu.studentId}, #{stu.studentName}, #{stu.bedRoomId})
+        </foreach>
+    </insert>
+
+    <update id="updateStudentById">
+        <if test="studentId!=null and studentId!=''">
+            update student
+            <trim prefix="set" suffixOverrides=",">
+                <if test="studentName!=null and studentName!=''">
+                    name=#{studentName},
+                </if>
+                <if test="bedRoomId!=null and bedRoomId!=''">
+                    bedroom=#{bedRoomId},
+                </if>
+            </trim>
+            <where>
+                stu_id=#{studentId}
+            </where>
+        </if>
+    </update>
+
+    <select id="allStudents" resultMap="stuMap">
+        select *
+        from student;
+    </select>
+    <select id="getByStudentId" resultMap="stuMap">
+        select *
+        from student
+        where stu_id = #{studentId}
+    </select>
+    <select id="getByBedRoomId" resultMap="stuMap">
+        <if test="bedRoomId!=null and bedRoomId!=''">
+            select * from student where bedroom=#{bedRoomId}
+        </if>
+    </select>
+
+    <delete id="deleteByStudentId">
+        <if test="studentId!=null and studentId !=''">
+            delete from student where stu_id = #{studentId}
+        </if>
+    </delete>
+
+</mapper>
