@@ -55,7 +55,7 @@ public class BedRoomServiceImpl implements BedRoomService {
     @Override
     public WholeSchool allBuildingsInfo() {
         //楼栋号去重
-        Stream<Integer> distinctBuild = bedRoomMapper.allRooms().stream().map(BedRoom::getBuild).distinct();
+        Stream<Integer> distinctBuild = bedRoomMapper.allRooms().stream().map(BedRoom::getBuild).sorted(Integer::compareTo).distinct();
 
         List<Building> buildingList = distinctBuild.map(buildNo -> {
             Building building = new Building();
@@ -63,11 +63,11 @@ public class BedRoomServiceImpl implements BedRoomService {
             building.setBuild(buildNo);
             //找到楼栋对应的楼层号列表
             List<Floor> floorList = bedRoomMapper.getByRoomMulti(null, buildNo, 0, 0).
-                    stream().map(BedRoom::getFloor).distinct().map(floorNo -> {
+                    stream().map(BedRoom::getFloor).distinct().sorted(Integer::compareTo).map(floorNo -> {
                         //每一个房间号
                         List<Room> rooms = bedRoomMapper.getByRoomMulti(null, buildNo, floorNo, 0).stream().map(BedRoom::getRoom).map(roomNo -> {
                             //楼栋-楼层-房间号 对应的 该行记录的id
-                            List<String> bedRoomId = bedRoomMapper.getByRoomMulti(null, buildNo, floorNo, roomNo).stream().map(BedRoom::getBedRoomId).collect(Collectors.toList());
+                            List<String> bedRoomId = bedRoomMapper.getByRoomMulti(null, buildNo, floorNo, roomNo).stream().map(BedRoom::getBedRoomId).sorted(String::compareTo).collect(Collectors.toList());
                             //只有唯一一条记录编号
                             assert bedRoomId.size() == 1;
                             String bid = bedRoomId.get(0);

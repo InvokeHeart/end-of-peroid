@@ -14,6 +14,16 @@
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
     </bean>
 
+    <!-- enable cors -->
+    <mvc:cors>
+        <!-- allowed-methods="*" --> <!-- 表示所有请求都有效 -->
+        <mvc:mapping path="/**" allowed-origin-patterns="*"
+                     allowed-methods="POST, GET, OPTIONS, DELETE, PUT"
+                     allowed-headers="Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+                     allow-credentials="true"/>
+    </mvc:cors>
+
+
     <!-- enable annotation -->
     <mvc:annotation-driven validator="validator">
         <mvc:message-converters>
