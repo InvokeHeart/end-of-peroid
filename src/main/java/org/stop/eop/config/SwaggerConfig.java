@@ -17,23 +17,22 @@ import java.util.ArrayList;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig implements WebMvcConfigurer {
-    private Logger logger = LoggerFactory.getLogger(SwaggerConfig.class);
 
     @Bean
     public Docket docket(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .groupName("瓤瓤")
+                .groupName("stop")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("org.stop.eop.controller"))
                 .build();
     }
 
     private ApiInfo apiInfo(){
-        Contact contact=new Contact("瓤瓤","https://blog.csdn.net/lovely__RR","2293557957@qq.com");
+        Contact contact=new Contact("Stop","https://cn.bing.com","authabc@163.com");
         return new ApiInfo(
-                "瓤瓤",
-                "你我山巅自相逢,予你与我遇清风",
+                "My Title",
+                "关于期末作业的一些接口",
                 "1.0",
                 "https://swagger.io/",
                 contact,

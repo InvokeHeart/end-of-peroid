@@ -28,7 +28,7 @@ public class StudentController {
         return Objects.nonNull(student) ? Result.ok(student) : Result.error("未找到指定学生");
     }
 
-    //添加学生 或 为学生分配宿舍
+    //添加学生 或 添加学生时就为学生分配宿舍
     @PostMapping
     Result addStudent(@RequestBody @Valid StudentDTO studentDTO) {
         return Result.ok(studentService.addStudent(studentDTO));
