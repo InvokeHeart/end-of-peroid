@@ -4,7 +4,6 @@ import cn.hutool.core.util.IdUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.stop.eop.entity.dto.*;
 import org.stop.eop.entity.po.BasicStudent;
 import org.stop.eop.entity.po.BedRoom;
@@ -12,7 +11,6 @@ import org.stop.eop.entity.po.Student;
 import org.stop.eop.mapper.BedRoomMapper;
 import org.stop.eop.service.BedRoomService;
 import org.stop.eop.service.StudentService;
-import org.stop.eop.util.EmptyObjectUtil;
 
 import java.util.List;
 import java.util.Objects;
@@ -100,8 +98,9 @@ public class BedRoomServiceImpl implements BedRoomService {
      */
     @Override
     public String addBedRoom(BedRoomDTO bedRoomDTO) {
+        List<BedRoom> roomMulti = bedRoomMapper.getByRoomMulti(null, bedRoomDTO.getBuild(), bedRoomDTO.getFloor(), bedRoomDTO.getRoom());
         //检查数据库是否存在
-        if (Objects.nonNull(bedRoomMapper.getByRoomMulti(null, bedRoomDTO.getBuild(), bedRoomDTO.getFloor(), bedRoomDTO.getRoom()).get(0))) {
+        if (Objects.nonNull(roomMulti) && roomMulti.size() > 0) {
             return "添加失败,楼栋-楼层-寝室号已存在";
         }
         BedRoom bedRoom = new BedRoom();

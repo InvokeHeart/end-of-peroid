@@ -2,7 +2,6 @@ package org.stop.eop.service;
 
 
 import org.stop.eop.entity.dto.StudentDTO;
-import org.stop.eop.entity.po.BedRoom;
 import org.stop.eop.entity.po.Student;
 
 import java.util.List;

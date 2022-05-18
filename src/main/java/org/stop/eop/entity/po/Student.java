@@ -1,6 +1,5 @@
 package org.stop.eop.entity.po;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.ToString;
 import org.stop.eop.entity.dto.StudentDTO;
 
@@ -9,7 +8,6 @@ import org.stop.eop.entity.dto.StudentDTO;
 public class Student extends BasicStudent {
 
     //宿舍
-    @ApiModelProperty(value = "寝室id")
     private String bedRoomId;
 
 
@@ -22,7 +20,7 @@ public class Student extends BasicStudent {
         this.bedRoomId = bedRoomId;
     }
 
-    //将dto转换为面向数据库pojo
+    //将dto转换为数据库pojo
     public Student(StudentDTO studentDTO) {
         super(studentDTO.getStudentId(), studentDTO.getName());
         this.bedRoomId = studentDTO.getBedRoomId();

@@ -1,8 +1,5 @@
 package org.stop.eop.controller;
 
-import io.swagger.annotations.*;
-import io.swagger.models.auth.In;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +12,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("bedroom")
 @SuppressWarnings("rawtypes")
-@Api(value = "寝室管理", tags = "this is bedroom tag")
 public class BedRoomController {
     private final BedRoomService bedRoomService;
 
@@ -26,20 +22,14 @@ public class BedRoomController {
         this.bedRoomService = bedRoomService;
     }
 
-    @ApiOperation(value = "查询所有楼栋.楼层.寝室及寝室所居住的学生信息")
     @GetMapping
     Result all() {
         return Result.ok("查询成功", bedRoomService.allBuildingsInfo());
     }
 
-    @ApiOperation("新增楼栋|楼层|寝室号信息")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "build", value = "楼栋号"),
-            @ApiImplicitParam(name = "floor", value = "楼层号"),
-            @ApiImplicitParam(name = "room", value = "寝室号")
-    })
+
     @PostMapping
-    Result addBedRoom(@RequestBody @Valid @ApiParam("寝室实体") BedRoomDTO bedRoomDTO) {
+    Result addBedRoom(@RequestBody @Valid BedRoomDTO bedRoomDTO) {
         log.info("{}", bedRoomDTO);
         return Result.ok(bedRoomService.addBedRoom(bedRoomDTO));
     }
