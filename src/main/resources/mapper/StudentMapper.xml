@@ -61,4 +61,19 @@
         </if>
     </delete>
 
+
+    <!-- association -->
+    <resultMap id="sbMap" type="org.stop.eop.entity.po.StudentBuilding">
+        <id property="studentId" column="stu_id"/>
+        <result property="studentName" column="name"/>
+        <association property="bedRoom" column="bedroom" select="org.stop.eop.mapper.BedRoomMapper.getByBedRoomId"
+                     javaType="bedRoom" fetchType="eager"/>
+    </resultMap>
+
+    <select id="getStuAndRoomsByStuId" resultMap="sbMap">
+        select *
+        from student
+        where stu_id like concat(#{stuId}, '%')
+    </select>
+
 </mapper>

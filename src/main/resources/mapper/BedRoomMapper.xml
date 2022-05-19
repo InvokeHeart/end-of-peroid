@@ -45,6 +45,7 @@
         from building
         where bedroom = #{bedRoomId}
     </select>
+
     <select id="allRooms" resultMap="bedRoomMap">
         select *
         from building

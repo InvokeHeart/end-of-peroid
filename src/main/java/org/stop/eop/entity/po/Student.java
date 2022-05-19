@@ -4,7 +4,6 @@ import lombok.ToString;
 import org.stop.eop.entity.dto.StudentDTO;
 
 
-@ToString
 public class Student extends BasicStudent {
 
     //宿舍
@@ -35,5 +34,13 @@ public class Student extends BasicStudent {
 
     public void setBedRoomId(String bedRoomId) {
         this.bedRoomId = bedRoomId;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "bedRoomId='" + bedRoomId + '\'' +
+                "} " + super.toString();
     }
 }

@@ -14,6 +14,7 @@ import org.stop.eop.entity.dto.WholeSchool;
 import org.stop.eop.entity.po.BasicStudent;
 import org.stop.eop.entity.po.BedRoom;
 import org.stop.eop.entity.po.Student;
+import org.stop.eop.entity.po.StudentBuilding;
 import org.stop.eop.mapper.BedRoomMapper;
 import org.stop.eop.mapper.StudentMapper;
 
@@ -85,7 +86,11 @@ public class BedRoomTest {
         System.out.println(objectMapper.writeValueAsString(wholeSchool));
         // System.out.println(wholeSchool);
 
-
+    }
+    @Test
+    public void testSelectByAssociation(){
+        List<StudentBuilding> stuAndRoomsByStuId = studentMapper.getStuAndRoomsByStuId("2021");
+        System.out.println(stuAndRoomsByStuId);
     }
 
 }

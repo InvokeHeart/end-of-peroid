@@ -56,5 +56,13 @@ public class Result<T> {
         return result;
     }
 
+    public static Result<String> noAuth() {
+        Result<String> result = new Result<>();
+        result.setData("");
+        result.setCode(ResultCode.UnAUTH.getCode());
+        result.setMessage(ResultCode.UnAUTH.getCodeDesc());
+        return result;
+    }
+
 
 }

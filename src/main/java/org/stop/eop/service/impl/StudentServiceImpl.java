@@ -5,6 +5,7 @@ import org.springframework.util.StringUtils;
 import org.stop.eop.entity.dto.StudentDTO;
 import org.stop.eop.entity.po.BedRoom;
 import org.stop.eop.entity.po.Student;
+import org.stop.eop.entity.po.StudentBuilding;
 import org.stop.eop.mapper.StudentMapper;
 import org.stop.eop.service.BedRoomService;
 import org.stop.eop.service.StudentService;
@@ -108,6 +109,12 @@ public class StudentServiceImpl implements StudentService {
         }
         return studentMapper.updateStudentById(new Student(studentDTO)) > 0 ? "更新成功" : "更新失败";
     }
+
+    // depends on stuId find out corresponding living room
+    public List<StudentBuilding> findStuAndRoomsByStuId(String stuId){
+        return studentMapper.getStuAndRoomsByStuId(stuId);
+    }
+
 
 
     private void checkRoomNumber(String bedRoomId) {

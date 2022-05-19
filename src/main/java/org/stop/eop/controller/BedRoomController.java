@@ -17,7 +17,6 @@ public class BedRoomController {
 
     private static final Logger log = LoggerFactory.getLogger(BedRoomController.class);
 
-
     BedRoomController(BedRoomService bedRoomService) {
         this.bedRoomService = bedRoomService;
     }
@@ -48,6 +47,7 @@ public class BedRoomController {
     Result buildingFloorAndRooms(@PathVariable("bid") Integer bid, @PathVariable("fid") Integer fid) {
         return Result.ok("楼栋" + bid + " 楼层" + fid, bedRoomService.rooms(bid, fid));
     }
+
 
 
 }
