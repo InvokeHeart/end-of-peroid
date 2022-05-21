@@ -1,5 +1,6 @@
 package org.stop.eop.entity.po;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.ToString;
 import org.stop.eop.entity.dto.StudentDTO;
 
@@ -7,6 +8,7 @@ import org.stop.eop.entity.dto.StudentDTO;
 public class Student extends BasicStudent {
 
     //宿舍
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String bedRoomId;
 
 

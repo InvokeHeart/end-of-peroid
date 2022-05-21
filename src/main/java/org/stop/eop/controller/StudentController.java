@@ -26,10 +26,10 @@ public class StudentController {
     @GetMapping("{id}")
     Result getStudent(@PathVariable("id") String id) {
         List<StudentBuilding> byStuId = studentService.findStuAndRoomsByStuId(id);
-        if (Objects.nonNull(byStuId) && byStuId.size() > 0) {
+        if (Objects.nonNull(byStuId) && !byStuId.isEmpty()) {
             return Result.ok(byStuId);
         } else {
-            return Result.error("未找到学生");
+            return Result.error("未找到相关学生");
         }
     }
 
@@ -50,4 +50,14 @@ public class StudentController {
         return Result.ok(studentService.deleteStudent(studentId));
     }
 
+
+    @GetMapping("name/{name}")
+    Result getByStudentName(@PathVariable("name") String name) {
+        List<StudentBuilding> studentName = studentService.findByStudentName(name);
+        if (Objects.nonNull(studentName) && !studentName.isEmpty()) {
+            return Result.ok(studentName);
+        } else {
+            return Result.error("未找到相关学生");
+        }
+    }
 }

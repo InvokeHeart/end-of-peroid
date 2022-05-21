@@ -22,4 +22,5 @@ public interface StudentService {
     List<StudentBuilding> findStuAndRoomsByStuId(String stuId);
 
 
+    List<StudentBuilding> findByStudentName(String name);
 }

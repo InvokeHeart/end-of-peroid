@@ -5,9 +5,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.stop.eop.entity.dto.*;
-import org.stop.eop.entity.po.BasicStudent;
-import org.stop.eop.entity.po.BedRoom;
-import org.stop.eop.entity.po.Student;
+import org.stop.eop.entity.po.*;
 import org.stop.eop.mapper.BedRoomMapper;
 import org.stop.eop.service.BedRoomService;
 import org.stop.eop.service.StudentService;
@@ -134,6 +132,21 @@ public class BedRoomServiceImpl implements BedRoomService {
      */
     public List<Integer> rooms(Integer buildingNumber, Integer floorNumber) {
         return bedRoomMapper.getByRoomMulti(null, buildingNumber, floorNumber, 0).stream().map(BedRoom::getRoom).distinct().collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Student> roomStudents(Integer bid, Integer fid, Integer room) {
+        List<BedRoom> roomMulti = bedRoomMapper.getByRoomMulti(null, bid, fid, room);
+        if (!roomMulti.isEmpty()) {
+            String bedRoomId = roomMulti.get(0).getBedRoomId();
+            return studentService.findByBedRoomId(bedRoomId);
+        }
+        return null;
+    }
+
+    @Override
+    public List<RoomStudent> roomAndStudents(Integer bid, Integer fid) {
+       return bedRoomMapper.getRoomAndStudentsByBuildAndFloor(bid,fid);
     }
 
 

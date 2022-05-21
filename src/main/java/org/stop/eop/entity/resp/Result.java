@@ -65,4 +65,35 @@ public class Result<T> {
     }
 
 
+    public static Result<String> loginFail() {
+        Result<String> result = new Result<>();
+        result.setData("");
+        result.setCode(ResultCode.LOGIN_FAIL.getCode());
+        result.setMessage(ResultCode.LOGIN_FAIL.getCodeDesc());
+        return result;
+    }
+    public static Result<String> loginFail(String message) {
+        Result<String> result = new Result<>();
+        result.setData("");
+        result.setCode(ResultCode.LOGIN_FAIL.getCode());
+        result.setMessage(message);
+        return result;
+    }
+
+
+    public static Result<String> loginSuccess() {
+        Result<String> result = new Result<>();
+        result.setData("");
+        result.setCode(ResultCode.LOGIN_SUCCESS.getCode());
+        result.setMessage(ResultCode.LOGIN_SUCCESS.getCodeDesc());
+        return result;
+    }
+
+    public static Result<String> loginSuccess(String message) {
+        Result<String> result = new Result<>();
+        result.setData("");
+        result.setCode(ResultCode.LOGIN_SUCCESS.getCode());
+        result.setMessage(message);
+        return result;
+    }
 }

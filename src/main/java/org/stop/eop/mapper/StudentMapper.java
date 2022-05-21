@@ -26,4 +26,6 @@ public interface StudentMapper {
     Integer updateStudentById(Student student);
 
     List<StudentBuilding> getStuAndRoomsByStuId(String stuId);
+
+    List<StudentBuilding> getStuAndRoomsByStuName(String name);
 }

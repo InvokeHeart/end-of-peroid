@@ -50,6 +50,7 @@
         select *
         from building
     </select>
+
     <select id="getByRoomMulti" resultMap="bedRoomMap">
         select * from building
         <where>
@@ -66,6 +67,21 @@
                 and room=#{room}
             </if>
         </where>
+    </select>
 
+
+    <resultMap id="roomStudentsMap" type="org.stop.eop.entity.po.RoomStudent">
+        <id property="bedRoomId" column="bedroom"/>
+        <result property="build" column="build"/>
+        <result property="floor" column="floor"/>
+        <result property="room" column="room"/>
+        <collection property="students" ofType="Student">
+            <result property="studentId" column="stu_id"/>
+            <result property="studentName" column="name"/>
+        </collection>
+    </resultMap>
+
+    <select id="getRoomAndStudentsByBuildAndFloor" resultMap="roomStudentsMap">
+        SELECT b.*,s.stu_id,s.name FROM student s ,building b WHERE b.bedroom=s.bedroom AND b.build=#{bid} AND b.floor=#{fid}
     </select>
 </mapper>

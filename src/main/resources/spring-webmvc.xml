@@ -23,7 +23,6 @@
                      allow-credentials="true"/>
     </mvc:cors>
 
-
     <!-- enable annotation -->
     <mvc:annotation-driven validator="validator">
         <mvc:message-converters>
@@ -33,16 +32,29 @@
     </mvc:annotation-driven>
     <!-- static resource -->
     <context:component-scan base-package="org.stop.eop.controller"/>
+
+    <mvc:default-servlet-handler/>
+
+   <!--
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping  path="/login"/>
+            <mvc:exclude-mapping  path="/register"/>
+            <bean id="loginInterceptor" class="org.stop.eop.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+     -->
+
+
+    <!--
+
     <mvc:resources mapping="/api/**" location="/WEB-INF/api/"/>
     <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
     <mvc:resources mapping="/images/**" location="/WEB-INF/images/"/>
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
     <mvc:resources mapping="/lib/**" location="/WEB-INF/lib/"/>
     <mvc:resources mapping="/page/**" location="/WEB-INF/page/"/>
-
-    <mvc:default-servlet-handler/>
-
-    <!-- TODO miss ViewResolver -->
 
     <bean id="templateResolver"
           class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
@@ -65,6 +77,7 @@
         <property name="templateEngine" ref="templateEngine"/>
         <property name="characterEncoding" value="UTF-8"/>
     </bean>
+    -->
 
 
 </beans>

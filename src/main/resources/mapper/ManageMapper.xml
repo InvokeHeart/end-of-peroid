@@ -3,7 +3,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.stop.eop.mapper.ManageMapper">
+    <resultMap id="managerMap" type="org.stop.eop.entity.po.Manager">
+        <id property="seq" column="seq"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="pwd" column="pwd"/>
+        <result property="build" column="build"/>
+    </resultMap>
 
+    <insert id="addManagerInfo">
+        insert into manage
+        values (#{name}, #{phone}, #{pwd})
+    </insert>
+
+    <select id="getManagerByPhone" resultMap="managerMap">
+        select *
+        from manage
+        where phone = #{phone}
+    </select>
 
 
 </mapper>

@@ -75,6 +75,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public String deleteStudent(String stuId) {
+        if (Objects.isNull(findByStudentId(stuId))) {
+            return "学生不存在 无法删除";
+        }
         return studentMapper.deleteByStudentId(stuId) > 0 ? "学生删除成功" : "学生删除失败";
     }
 
@@ -111,11 +114,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     // depends on stuId find out corresponding living room
-    public List<StudentBuilding> findStuAndRoomsByStuId(String stuId){
+    public List<StudentBuilding> findStuAndRoomsByStuId(String stuId) {
         return studentMapper.getStuAndRoomsByStuId(stuId);
     }
 
-
+    @Override
+    public List<StudentBuilding> findByStudentName(String name) {
+        return studentMapper.getStuAndRoomsByStuName(name);
+    }
 
     private void checkRoomNumber(String bedRoomId) {
         //检查该寝室人数
