@@ -124,6 +124,11 @@ public class BedRoomServiceImpl implements BedRoomService {
         return bedRoomMapper.getByRoomMulti(null, buildingNumber, 0, 0).stream().map(BedRoom::getFloor).distinct().collect(Collectors.toList());
     }
 
+    //楼栋及楼楼栋入住人员个数
+    public List<BuildCount> buildAndStuCount() {
+        return bedRoomMapper.buildStudentCount();
+    }
+
 
     /**
      * @param buildingNumber the designated building number

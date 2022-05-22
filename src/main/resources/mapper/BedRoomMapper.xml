@@ -51,6 +51,7 @@
         from building
     </select>
 
+    
     <select id="getByRoomMulti" resultMap="bedRoomMap">
         select * from building
         <where>
@@ -67,6 +68,11 @@
                 and room=#{room}
             </if>
         </where>
+    </select>
+    
+    <!-- 指定楼栋的的入住学生数 -->
+    <select id="buildStudentCount" resultType="org.stop.eop.entity.po.BuildCount">
+        SELECT b.build, COUNT(s.bedroom) as count FROM building b left JOIN student s on b.bedroom=s.bedroom GROUP BY b.build;
     </select>
 
 
