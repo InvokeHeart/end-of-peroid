@@ -7,4 +7,9 @@
     <settings>
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
+    <!-- <plugins> -->
+        <!-- <plugin interceptor="org.stop.eop.interceptor.MybatisInterceptor"> -->
+        <!--     <property name="k1" value="v1"/> -->
+        <!-- </plugin> -->
+    <!-- </plugins> -->
 </configuration>

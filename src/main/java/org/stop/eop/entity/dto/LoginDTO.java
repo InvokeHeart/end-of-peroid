@@ -12,4 +12,6 @@ public class LoginDTO {
     private String phone;
     @NotEmpty
     private String pwd;
+    @NotEmpty
+    private String code;
 }

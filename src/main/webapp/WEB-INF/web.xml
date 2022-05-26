@@ -11,6 +11,10 @@
         <param-value>classpath:spring.xml</param-value>
     </context-param>
 
+    <listener>
+        <listener-class>org.stop.eop.util.SessionListener</listener-class>
+    </listener>
+
     <servlet>
         <!-- dispatcher servlet -->
         <servlet-name>dispatcherServlet</servlet-name>

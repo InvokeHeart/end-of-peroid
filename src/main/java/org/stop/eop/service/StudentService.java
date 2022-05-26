@@ -2,8 +2,8 @@ package org.stop.eop.service;
 
 
 import org.stop.eop.entity.dto.StudentDTO;
+import org.stop.eop.entity.po.RoomStudent;
 import org.stop.eop.entity.po.Student;
-import org.stop.eop.entity.po.StudentBuilding;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ public interface StudentService {
 
     String updateStudent(StudentDTO studentDTO);
 
-    List<StudentBuilding> findStuAndRoomsByStuId(String stuId);
+    List<RoomStudent> findRoomAndStudentsByStuId(String stuId);
 
 
-    List<StudentBuilding> findByStudentName(String name);
+    List<RoomStudent> findRoomAndStusByStuName(String name);
 }

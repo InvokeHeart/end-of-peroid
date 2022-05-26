@@ -1,7 +1,6 @@
 package org.stop.eop.entity.po;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.ToString;
 import org.stop.eop.entity.dto.StudentDTO;
 
 
@@ -23,7 +22,7 @@ public class Student extends BasicStudent {
 
     //将dto转换为数据库pojo
     public Student(StudentDTO studentDTO) {
-        super(studentDTO.getStudentId(), studentDTO.getName());
+        super(studentDTO.getStudentId(), studentDTO.getStudentName());
         this.bedRoomId = studentDTO.getBedRoomId();
     }
 

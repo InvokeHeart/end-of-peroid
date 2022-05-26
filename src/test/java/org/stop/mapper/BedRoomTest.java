@@ -14,6 +14,7 @@ import org.stop.eop.entity.dto.WholeSchool;
 import org.stop.eop.entity.po.*;
 import org.stop.eop.mapper.BedRoomMapper;
 import org.stop.eop.mapper.StudentMapper;
+import org.stop.eop.util.ThreadContextHolder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +29,9 @@ public class BedRoomTest {
 
     @Autowired
     private StudentMapper studentMapper;
+
+
+    private final ThreadLocal<String> local=new ThreadLocal<>();
 
 
     @Test
@@ -67,7 +71,7 @@ public class BedRoomTest {
                             List<BasicStudent> basicStudents = sameBedRoomStudents.stream().map(student -> new BasicStudent(student.getStudentId(), student.getStudentName())).collect(Collectors.toList());
 
                             //封装寝室号+该寝室下住宿的学生
-                            return new Room(roomNo, basicStudents);
+                            return new Room(bid,roomNo, basicStudents);
                         }).collect(Collectors.toList());//collect as list return
                         // 找到该room下所住宿的学生进行封装
                         return new Floor(floorNo, rooms);
@@ -86,7 +90,7 @@ public class BedRoomTest {
     }
     @Test
     public void testSelectByAssociation(){
-        List<StudentBuilding> stuAndRoomsByStuId = studentMapper.getStuAndRoomsByStuId("2021");
+        List<RoomStudent> stuAndRoomsByStuId = studentMapper.getRoomAndStudentsByStuId("2021");
         System.out.println(stuAndRoomsByStuId);
     }
 
@@ -97,5 +101,14 @@ public class BedRoomTest {
         ObjectMapper objectMapper = new ObjectMapper();
         System.out.println(objectMapper.writeValueAsString(studentsByBuildAndFloor));
     }
+
+
+    @Test
+    public void testMapperAllRooms(){
+        ThreadContextHolder.setLocal(14);
+        System.out.println(roomMapper.allRooms().size());
+    }
+
+
 
 }

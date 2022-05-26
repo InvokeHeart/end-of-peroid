@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Room {
+    private String bedRoomId;
     private Integer roomNo;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<BasicStudent> students;

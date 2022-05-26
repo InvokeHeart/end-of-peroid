@@ -63,34 +63,33 @@
 
 
     <!-- association -->
-    <resultMap id="sbMap" type="org.stop.eop.entity.po.StudentBuilding">
-        <id property="studentId" column="stu_id"/>
-        <result property="studentName" column="name"/>
-        <association property="bedRoom" column="bedroom" select="org.stop.eop.mapper.BedRoomMapper.getByBedRoomId"
-                     javaType="bedRoom" fetchType="eager"/>
+    <resultMap id="bsMap" type="org.stop.eop.entity.po.RoomStudent">
+        <id property="bedRoomId" column="bedroom"/>
+        <result property="build" column="build"/>
+        <result property="floor" column="floor"/>
+        <result property="room" column="room"/>
+        <collection property="students" ofType="Student">
+            <result property="studentId" column="stu_id"/>
+            <result property="studentName" column="name"/>
+        </collection>
     </resultMap>
 
-    <select id="getStuAndRoomsByStuId" resultMap="sbMap">
-        select *
-        from student
-        where stu_id like concat(#{stuId}, '%')
+    <select id="getRoomAndStudentsByStuId" resultMap="bsMap">
+        SELECT b.*, s.stu_id, s.`name`
+        FROM building b,
+             student s
+        WHERE b.bedroom = s.bedroom
+          AND s.stu_id like concat(#{stuId}, '%')
     </select>
 
 
-    <resultMap id="map2" type="org.stop.eop.entity.po.StudentBuilding">
-        <id property="studentId" column="stu_id"/>
-        <result property="studentName" column="name"/>
-        <association property="bedRoom" javaType="bedRoom">
-            <id property="bedRoomId" column="bedroom"/>
-            <result property="build" column="build"/>
-            <result property="floor" column="floor"/>
-            <result property="room" column="room"/>
-        </association>
+    <select id="getRoomAndStusByStuName" resultMap="bsMap">
 
-    </resultMap>
-
-    <select id="getStuAndRoomsByStuName" resultMap="map2">
-        SELECT s.stu_id,s.name,b.* FROM student s ,building b WHERE b.bedroom=s.bedroom AND  NAME LIKE concat('%',#{name},'%')
+        SELECT b.*, s.stu_id, s.`name`
+        FROM building b,
+             student s
+        WHERE b.bedroom = s.bedroom
+          AND s.name like concat('%', #{name}, '%')
     </select>
 
 </mapper>

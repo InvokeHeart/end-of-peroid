@@ -1,6 +1,5 @@
 package org.stop.eop.controller;
 
-import cn.hutool.core.lang.hash.Hash;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +10,6 @@ import org.stop.eop.entity.resp.Result;
 import org.stop.eop.service.BedRoomService;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotEmpty;
-import java.net.NetworkInterface;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 

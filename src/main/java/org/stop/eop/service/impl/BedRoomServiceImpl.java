@@ -76,7 +76,7 @@ public class BedRoomServiceImpl implements BedRoomService {
                             List<BasicStudent> basicStudents = sameBedRoomStudents.stream().map(student -> new BasicStudent(student.getStudentId(), student.getStudentName())).collect(Collectors.toList());
 
                             //封装寝室号+该寝室下住宿的学生
-                            return new Room(roomNo, basicStudents);
+                            return new Room(bid,roomNo, basicStudents);
                         }).collect(Collectors.toList());//collect as list return
                         // 找到该room下所住宿的学生进行封装
                         return new Floor(floorNo, rooms);

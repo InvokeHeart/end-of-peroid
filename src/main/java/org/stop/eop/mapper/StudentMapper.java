@@ -1,8 +1,8 @@
 package org.stop.eop.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.stop.eop.entity.po.RoomStudent;
 import org.stop.eop.entity.po.Student;
-import org.stop.eop.entity.po.StudentBuilding;
 
 import java.util.List;
 
@@ -25,7 +25,8 @@ public interface StudentMapper {
 
     Integer updateStudentById(Student student);
 
-    List<StudentBuilding> getStuAndRoomsByStuId(String stuId);
+    List<RoomStudent> getRoomAndStudentsByStuId(String stuId);
 
-    List<StudentBuilding> getStuAndRoomsByStuName(String name);
+    List<RoomStudent> getRoomAndStusByStuName(String name);
+
 }

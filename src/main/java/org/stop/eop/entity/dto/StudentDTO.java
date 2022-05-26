@@ -11,7 +11,7 @@ public class StudentDTO {
     private String studentId;
 
     @NotEmpty(message = "学生姓名不能为空")
-    private String name;
+    private String studentName;
 
     private String bedRoomId;
 

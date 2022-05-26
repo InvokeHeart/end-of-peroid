@@ -35,16 +35,15 @@
 
     <mvc:default-servlet-handler/>
 
-   <!--
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping  path="/login"/>
             <mvc:exclude-mapping  path="/register"/>
+            <mvc:exclude-mapping  path="/captcha"/>
             <bean id="loginInterceptor" class="org.stop.eop.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-     -->
 
 
     <!--

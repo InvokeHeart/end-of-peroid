@@ -2,7 +2,7 @@ package org.stop.eop.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.stop.eop.entity.dto.StudentDTO;
-import org.stop.eop.entity.po.StudentBuilding;
+import org.stop.eop.entity.po.RoomStudent;
 import org.stop.eop.entity.resp.Result;
 import org.stop.eop.service.StudentService;
 
@@ -25,7 +25,7 @@ public class StudentController {
     //根据学号查找学生
     @GetMapping("{id}")
     Result getStudent(@PathVariable("id") String id) {
-        List<StudentBuilding> byStuId = studentService.findStuAndRoomsByStuId(id);
+        List<RoomStudent> byStuId = studentService.findRoomAndStudentsByStuId(id);
         if (Objects.nonNull(byStuId) && !byStuId.isEmpty()) {
             return Result.ok(byStuId);
         } else {
@@ -53,7 +53,7 @@ public class StudentController {
 
     @GetMapping("name/{name}")
     Result getByStudentName(@PathVariable("name") String name) {
-        List<StudentBuilding> studentName = studentService.findByStudentName(name);
+        List<RoomStudent> studentName = studentService.findRoomAndStusByStuName(name);
         if (Objects.nonNull(studentName) && !studentName.isEmpty()) {
             return Result.ok(studentName);
         } else {

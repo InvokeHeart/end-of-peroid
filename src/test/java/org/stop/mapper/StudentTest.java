@@ -1,6 +1,5 @@
 package org.stop.mapper;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,8 +17,8 @@ public class StudentTest {
 
     @Test
     public void testFindByName(){
-        mapper.getStuAndRoomsByStuName("周").forEach(System.out::println);
-        System.out.println(mapper.getStuAndRoomsByStuName("n").size());
+        mapper.getRoomAndStusByStuName("周").forEach(System.out::println);
+        System.out.println(mapper.getRoomAndStusByStuName("n").size());
 
     }
 }

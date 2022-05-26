@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.stop.eop.entity.dto.StudentDTO;
 import org.stop.eop.entity.po.BedRoom;
+import org.stop.eop.entity.po.RoomStudent;
 import org.stop.eop.entity.po.Student;
-import org.stop.eop.entity.po.StudentBuilding;
 import org.stop.eop.mapper.StudentMapper;
 import org.stop.eop.service.BedRoomService;
 import org.stop.eop.service.StudentService;
@@ -114,13 +114,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     // depends on stuId find out corresponding living room
-    public List<StudentBuilding> findStuAndRoomsByStuId(String stuId) {
-        return studentMapper.getStuAndRoomsByStuId(stuId);
+    public List<RoomStudent> findRoomAndStudentsByStuId(String stuId) {
+        return studentMapper.getRoomAndStudentsByStuId(stuId);
     }
 
     @Override
-    public List<StudentBuilding> findByStudentName(String name) {
-        return studentMapper.getStuAndRoomsByStuName(name);
+    public List<RoomStudent> findRoomAndStusByStuName(String name) {
+        return studentMapper.getRoomAndStusByStuName(name);
     }
 
     private void checkRoomNumber(String bedRoomId) {
