@@ -1,7 +1,6 @@
 package org.stop.eop.util;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

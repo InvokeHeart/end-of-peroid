@@ -23,6 +23,10 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:spring-webmvc.xml</param-value>
         </init-param>
+        <init-param>
+            <param-name>throwExceptionIfNoHandlerFound</param-name>
+            <param-value>true</param-value>
+        </init-param>
         <!-- eager init -->
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -91,8 +95,8 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!-- 404 config -->
-    <error-page>
-        <error-code>404</error-code>
-        <location>/WEB-INF/templates/404.html</location>
-    </error-page>
+    <!-- <error-page> -->
+    <!--     <error-code>404</error-code> -->
+    <!--     <location>/WEB-INF/templates/404.html</location> -->
+    <!-- </error-page> -->
 </web-app>

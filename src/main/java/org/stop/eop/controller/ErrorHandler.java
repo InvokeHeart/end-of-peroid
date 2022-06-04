@@ -4,6 +4,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.stop.eop.entity.resp.Result;
 
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -29,10 +30,17 @@ public class ErrorHandler {
         return Result.error("重复 请检查后再添加");
     }
 
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public Result handleNoHandlerException(NoHandlerFoundException e){
+       return Result.error("没有页面");
+    }
+
     @ExceptionHandler(Exception.class)
     public Result handleException(Exception exception) {
         return Result.error("服务器未知错误 请联系管理员");
     }
+
 
 
 }

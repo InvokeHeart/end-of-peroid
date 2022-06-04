@@ -33,8 +33,9 @@
     <!-- static resource -->
     <context:component-scan base-package="org.stop.eop.controller"/>
 
-    <mvc:default-servlet-handler/>
+    <!-- <mvc:default-servlet-handler/> -->
 
+<!--
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
@@ -44,6 +45,7 @@
             <bean id="loginInterceptor" class="org.stop.eop.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+     -->
 
 
     <!--

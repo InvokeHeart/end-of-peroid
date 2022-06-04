@@ -1,14 +1,15 @@
 package org.stop.eop.service;
 
-import org.springframework.web.bind.annotation.PathVariable;
 import org.stop.eop.entity.dto.BedRoomDTO;
 import org.stop.eop.entity.dto.WholeSchool;
-import org.stop.eop.entity.po.*;
+import org.stop.eop.entity.po.BedRoom;
+import org.stop.eop.entity.po.BuildCount;
+import org.stop.eop.entity.po.RoomStudent;
+import org.stop.eop.entity.po.Student;
 
 import java.util.List;
 
 public interface BedRoomService {
-
 
     BedRoom findBedRoomById(String bedRoomId);
 

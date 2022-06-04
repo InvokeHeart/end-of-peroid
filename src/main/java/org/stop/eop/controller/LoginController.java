@@ -5,21 +5,21 @@ import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.core.codec.Base64;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.stop.eop.entity.dto.LoginDTO;
 import org.stop.eop.entity.dto.RegisterDTO;
 import org.stop.eop.entity.resp.Result;
 import org.stop.eop.service.ManageService;
 import org.stop.eop.util.SessionContextUtils;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -37,6 +37,7 @@ public class LoginController {
     @PostMapping("login")
     Result login(@RequestBody @Valid LoginDTO loginDTO, HttpServletRequest request) {
         String sessionId = request.getHeader("sessionId");
+        
         if (!StringUtils.hasText(sessionId)) {
             return Result.noAuth();
         }

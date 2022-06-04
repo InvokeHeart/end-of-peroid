@@ -1,6 +1,5 @@
 package org.stop.eop.anno;
 
-import cn.hutool.core.util.PhoneUtil;
 import cn.hutool.core.util.ReUtil;
 
 import javax.validation.ConstraintValidator;

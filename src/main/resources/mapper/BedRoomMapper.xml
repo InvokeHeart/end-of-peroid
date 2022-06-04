@@ -88,6 +88,6 @@
     </resultMap>
 
     <select id="getRoomAndStudentsByBuildAndFloor" resultMap="roomStudentsMap">
-        SELECT b.*,s.stu_id,s.name FROM student s RIGHT JOIN building b on b.bedroom=s.bedroom where b.build=#{bid} AND b.floor=#{fid}
+            SELECT b.*,s.stu_id,s.name FROM student s RIGHT JOIN building b on b.bedroom=s.bedroom where b.build=#{bid} AND b.floor=#{fid}
     </select>
 </mapper>
